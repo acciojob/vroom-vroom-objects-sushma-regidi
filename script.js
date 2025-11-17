@@ -1,41 +1,31 @@
-// --------------------------
-// Car Constructor
-// --------------------------
+// Car constructor
 function Car(make, model) {
-    this.make = make;
-    this.model = model;
+  this.make = make;
+  this.model = model;
 }
 
+// Add method to Car prototype
 Car.prototype.getMakeModel = function () {
-    return `${this.make} ${this.model}`;
+  return this.make + " " + this.model;
 };
 
-
-// --------------------------
-// SportsCar Constructor
-// --------------------------
+// SportsCar constructor
 function SportsCar(make, model, topSpeed) {
-    Car.call(this, make, model); // inherit Car properties
-    this.topSpeed = topSpeed;
+  // Call Car constructor to set make & model
+  Car.call(this, make, model);
+  this.topSpeed = topSpeed;
 }
 
-// inherit Car prototype
+// Inherit from Car prototype
 SportsCar.prototype = Object.create(Car.prototype);
 
-// restore constructor
+// Fix the constructor pointer (important for tests)
 SportsCar.prototype.constructor = SportsCar;
 
-// sports car method
+// Add method to SportsCar prototype
 SportsCar.prototype.getTopSpeed = function () {
-    return this.topSpeed;
+  return this.topSpeed;
 };
 
-
-// --------------------------
-// VERY IMPORTANT FOR CYPRESS
-// Expose constructors globally
-// --------------------------
-window.Car = Car;
-window.SportsCar = SportsCar;
 
 
