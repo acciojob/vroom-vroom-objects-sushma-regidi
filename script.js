@@ -11,12 +11,11 @@ Car.prototype.getMakeModel = function () {
 
 // SportsCar constructor function
 function SportsCar(make, model, topSpeed) {
-    // Call parent constructor
     Car.call(this, make, model);
     this.topSpeed = topSpeed;
 }
 
-// Inherit from Car prototype
+// Inherit from Car
 SportsCar.prototype = Object.create(Car.prototype);
 SportsCar.prototype.constructor = SportsCar;
 
@@ -24,6 +23,11 @@ SportsCar.prototype.constructor = SportsCar;
 SportsCar.prototype.getTopSpeed = function () {
     return this.topSpeed;
 };
+
+// 🔥 REQUIRED FOR CYPRESS TESTS 🔥
+window.Car = Car;
+window.SportsCar = SportsCar;
+
 
 
 
