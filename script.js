@@ -1,35 +1,30 @@
-<script>
-// Car constructor
+// Car constructor function
 function Car(make, model) {
     this.make = make;
     this.model = model;
 }
 
-// Add method to Car prototype
+// Method on Car prototype
 Car.prototype.getMakeModel = function () {
     return this.make + " " + this.model;
 };
 
-// SportsCar constructor (inherits from Car)
+// SportsCar constructor function
 function SportsCar(make, model, topSpeed) {
-    // call parent constructor
+    // Call parent constructor
     Car.call(this, make, model);
     this.topSpeed = topSpeed;
 }
 
-// Inherit from Car
+// Inherit from Car prototype
 SportsCar.prototype = Object.create(Car.prototype);
 SportsCar.prototype.constructor = SportsCar;
 
-// Add method to SportsCar prototype
+// Method on SportsCar prototype
 SportsCar.prototype.getTopSpeed = function () {
     return this.topSpeed;
 };
 
-// EXPOSE to window for Cypress
-window.Car = Car;
-window.SportsCar = SportsCar;
-</script>
 
 
 
