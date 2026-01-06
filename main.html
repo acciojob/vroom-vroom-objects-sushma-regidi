@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car & SportsCar Inheritance</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      color: #333;
+    }
+    .output {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Car & SportsCar Inheritance Demo</h1>
+  <div class="output" id="output"></div>
+
+  <script>
+    // 1. Car Constructor
+    function Car(make, model) {
+      this.make = make;
+      this.model = model;
+    }
+
+    // Add getMakeModel method to Car prototype
+    Car.prototype.getMakeModel = function() {
+      return this.make + " " + this.model;
+    };
+
+    // 2. SportsCar Constructor (inherits from Car)
+    function SportsCar(make, model, topSpeed) {
+      // Call Car constructor to set make and model
+      Car.call(this, make, model);
+
+      // Set topSpeed property
+      this.topSpeed = topSpeed;
+    }
+
+    // Inherit Car prototype
+    SportsCar.prototype = Object.create(Car.prototype);
+
+    // Fix constructor reference
+    SportsCar.prototype.constructor = SportsCar;
+
+    // Add getTopSpeed method to SportsCar prototype
+    SportsCar.prototype.getTopSpeed = function() {
+      return this.topSpeed;
+    };
+
+    // Test Example
+    const car = new SportsCar("Ferrari", "Testarossa", 200);
+
+    // Display outputs
+    const outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = `
+      <p><strong>Make & Model:</strong> ${car.getMakeModel()}</p>
+      <p><strong>Top Speed:</strong> ${car.getTopSpeed()} mph</p>
+      <p><strong>Make Property:</strong> ${car.make}</p>
+      <p><strong>Model Property:</strong> ${car.model}</p>
+      <p><strong>TopSpeed Property:</strong> ${car.topSpeed}</p>
+      <p><strong>Inheritance Check:</strong> ${car instanceof SportsCar && car instanceof Car}</p>
+    `;
+  </script>
+
+</body>
+</html>
 
